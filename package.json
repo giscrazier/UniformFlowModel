@@ -1,0 +1,19 @@
+{
+  "name": "uniformflowmodel",
+  "version": "1.0.0",
+  "description": "根据给定的路径点和速度，计算按顺序流动的下一个点位。",
+  "main": "UniformFlowModel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giscrazier/UniformFlowModel.git"
+  },
+  "author": "gissky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/giscrazier/UniformFlowModel/issues"
+  },
+  "homepage": "https://github.com/giscrazier/UniformFlowModel#readme"
+}
