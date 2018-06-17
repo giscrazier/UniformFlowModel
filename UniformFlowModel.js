@@ -3,6 +3,11 @@ let _idx = new WeakMap();
 let _count = new WeakMap();
 let {abs} = Math;
 export default class UniformFlowModel{
+    /**
+     * 构造器
+     * @param points    路线节点数组
+     * @param speed     速度
+     */
     constructor(points,speed){
        this.speedU = speed;
         let lineNodes = this.points = points;
@@ -39,6 +44,11 @@ export default class UniformFlowModel{
             //console.log(lineNodes);
         }
     }
+
+    /**
+     * 计算下一个到达点
+     * @returns {{point: *[], subSegmentIndex: number}}
+     */
     next(){
         let lineNodes = this.points;
         let idx = _idx.get(this);
@@ -50,16 +60,21 @@ export default class UniformFlowModel{
         //当一小段走完
         if(abs(count * path.speed.speedX) >= abs(path.distance.deltaX) &&
             abs(count * path.speed.speedY) >= abs(path.distance.deltaY)){
-            idx = ++idx%(lineNodes.length - 1);//这里当线路的所有子线路走完是，idx重新回到0，即重新从头开始计算点位置
+
+            //这里当线路的所有子线路走完时，idx重新回到0，即重新从头开始计算点位置
+            idx = ++idx%(lineNodes.length - 1);
             _idx.set(this,idx);
             count = 0;//每一段的基数置为0
             _count.set(this,0);
         }
         //正在计算的子线路
         path = lineNodes[idx];
-        return [path[0] + count * path.speed.speedX,
-            path[1] + count * path.speed.speedY,
-            (path[2] || 0)  + count * path.speed.speedZ];
+        return {
+            point: [path[0] + count * path.speed.speedX,
+                path[1] + count * path.speed.speedY,
+                (path[2] || 0)  + count * path.speed.speedZ],
+            subSegmentIndex: idx
+        };
     }
     reset(){
         _idx.set(this,0);

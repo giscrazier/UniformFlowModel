@@ -10,6 +10,6 @@ $ npm install uniformflowmodel --save
 let ufm = new UniformFlowModel(this.polyline.paths[0], speed);
 
 //使用next方法便可以取到下一个点位，
-ufm.next();
+let next = ufm.next();
 ```
-当流动点位到达终点时，就会又从头开始
+当流动点位到达整个线路的终点时，就会重新开始

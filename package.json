@@ -1,6 +1,6 @@
 {
   "name": "uniformflowmodel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "根据给定的路径点和速度，计算按顺序流动的下一个点位。",
   "main": "UniformFlowModel.js",
   "scripts": {
